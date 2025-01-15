@@ -6,6 +6,7 @@ let timerInterval; // Para el conteo regresivo
 const scoreElement = document.getElementById("score");
 const timeElement = document.getElementById("time");
 const gameContainer = document.getElementById("game-container");
+const squishSound = new Audio("./assests/sounds/squish.wav");
 
 // Función que crea un bug en una posición aleatoria dentro del contenedor
 function createBug() {
@@ -27,6 +28,12 @@ function createBug() {
   bug.addEventListener("click", () => {
     score++;
     scoreElement.textContent = score;
+
+    // Reproducimos el sonido
+    squishSound.currentTime = 0;  // Reinicia el audio por si se solapa
+    squishSound.play();
+
+    // Luego removemos el bug
     bug.remove();
   });
 
